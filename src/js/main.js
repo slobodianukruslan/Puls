@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	
+	// Initialization of Slick Slider
+
 	$('.carousel__inner').slick({
 		infinite: true,
 		speed: 2000,
@@ -19,34 +22,31 @@ $(document).ready(function(){
 		}],
 	});
 
+	
+	// Catalog Tabs
+
 	$('ul.catalog__tabs').on('click', 'li:not(.catalog__tab--active)', function() {
     $(this)
       .addClass('catalog__tab--active').siblings().removeClass('catalog__tab--active')
       .closest('div.container').find('div.catalog__content').removeClass('catalog__content--active').eq($(this).index()).addClass('catalog__content--active');
   });
 
-	// $('.flip-block__link').each(function(i) {
-	// 	$(this).on('click', function(e) {
-	// 		e.preventDefault();
-	// 		$('.flip-block__front').eq(i).toggleClass('flip-block__front--active');
-	// 		$('.flip-block__back').eq(i).toggleClass('flip-block__back--active');
-	// 	})
-	// })
 
-	$('.flip-block__link').each(function(i) {
-		$(this).on('click', function(e) {
+	// Flip card
+
+	const button = document.getElementsByClassName('flip-block__link');
+
+	for (let card of button) {
+		function flipCard(e) {
 			e.preventDefault();
-			$('.flip-block__front').eq(i).toggleClass('flip-block__front--active');
-			$('.flip-block__back').eq(i).toggleClass('flip-block__back--active');
-		})
-	})
-
-
-	$('.flip-block__link--back').each(function(i) {
-		$(this).on('click', function(e) {
-			e.preventDefault();
-			$('.flip-block__front').eq(i).toggleClass('flip-block__front--active');
-			$('.flip-block__back').eq(i).toggleClass('flip-block__back--active');
-		})
-	})
+			if (this.parentNode.classList.contains('flip-block__front')) {
+				this.parentNode.classList.add('flip-block__front--active');
+				this.parentNode.nextElementSibling.classList.add('flip-block__back--active');
+			} else if(this.parentNode.classList.contains('flip-block__back')) {
+				this.parentNode.classList.remove('flip-block__back--active');
+				this.parentNode.previousElementSibling.classList.remove('flip-block__front--active');
+			}
+		}	
+		card.addEventListener('click', flipCard);
+	}
 });
