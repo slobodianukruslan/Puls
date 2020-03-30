@@ -15,13 +15,13 @@ html {
     max-width: 980px;
     padding: 0 15px;
     margin: 0 auto;
-    overflow: hidden;
-    &--consultation {
-    	overflow: visible;
+    &--overflow {
+    	overflow: hidden;
     }
 }
 
-@import 'base/variables';
+@import 'base/_variables';
+@import 'base/_animate.scss';
 @import 'blocks/_promo.scss';
 @import 'blocks/_header.scss';
 @import 'blocks/_buttons.scss';
@@ -33,3 +33,5 @@ html {
 @import 'blocks/_catalog.scss';
 @import 'blocks/_feedback.scss';
 @import 'blocks/_footer.scss';
+@import 'blocks/_modal.scss';
+@import 'blocks/_scrollup.scss';

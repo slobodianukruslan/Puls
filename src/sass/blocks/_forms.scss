@@ -68,4 +68,12 @@
 		@media (max-width: 480px) {
 			width: 100%;
 		}
+
+		&--mt25 {
+			margin-top: 25px;
+
+			@media (max-height: 375px) {
+				margin-top: 16px;
+			}
+		}		
 }

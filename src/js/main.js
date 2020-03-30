@@ -49,4 +49,80 @@ $(document).ready(function(){
 		}	
 		card.addEventListener('click', flipCard);
 	}
+
+	// Modal windows
+
+		// Close for all windows
+	$('.modal__close').on('click', function() {
+		$('.overlay, #consultation, #order, #thanks').fadeOut('slow');
+	});
+		
+		// Modal window header
+	$('[data-modal=consultation]').on('click', function() {
+		$('.overlay, #consultation').fadeIn('slow');
+	});
+
+		// Modal window catalog
+	$('.button--catalog').each(function(i) {
+		$(this).on('click', function() {
+			$('#order .modal__descr').text($('.flip-block__title').eq(i).text());
+			$('.overlay, #order').fadeIn('slow');
+		});
+	});
+
+
+	// Form validate
+
+	function validateForms(form){
+		$(form).validate({
+			rules: {
+				name: "required",
+				phone: "required",
+				email: {
+					required: true,
+					email: true
+				}			
+			},
+			messages: {
+				name: "Пожалуйста, введите ваше имя",
+				phone: "Пожалуйста, введите ваш номер телефона",
+				email: {
+					required: "Пожалуйста, введите ваш e-mail",				
+					email: "Формат почты должен быть таким: name@domain.com"
+				}
+			}
+		});
+	};
+
+	validateForms('#consultation-form');
+	validateForms('#consultation form');
+	validateForms('#order form');
+
+	
+	// Mask for phone number
+
+	$('input[name=phone]').mask("+7 (***) ***-**-**");
+
+	
+	// Smooth scroll
+
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 1000) {
+			$('.scroll-up').fadeIn();
+		} else {
+			$('.scroll-up').fadeOut();
+		}
+	});
+
+
+	$("a[href^='#']").click(function(){
+		const _href = $(this).attr("href");
+		$("html, body").animate({scrollTop: $(_href).offset().top+"px"});
+		return false;
+	});
+
+
+	// Initialization WOW
+	new WOW().init();
+
 });
